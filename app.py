@@ -1,4 +1,6 @@
 from flask import Flask, render_template, request
+from flask.wrappers import Response
+import git
 import pandas as pd
 import os
 import random
@@ -43,6 +45,15 @@ def search_roll_no(roll_no, csv_folder):
                 break
     
     return results
+
+@app.route('/git_update', methods=['POST'])
+def git_update():
+    repo = git.Repo('./orbe')
+    origin=repo.remotes.origin
+    repo.create_head('main',
+    origin.refs.main).set_tracking_branch (origin.refs.main).checkout()
+    origin.pull()
+    return '', 200
 
 @app.route('/')
 def index():
