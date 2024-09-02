@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Exam seat allotment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="{{url_for('static', filename='main.css')}}" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    #portfolio_1{
+      padding: 25px;
+      width: 80%;
+      margin: auto;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    }
+    #customers{
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      padding: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" style="padding-left: 120px;">Exam Seat allotment</a>
+        <!-- <li ><a data-value="#form4" onclick="toggleform(event)"><span class="glyphicon glyphicon-login"></span>Home</a></li> -->
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li ><a href="/">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  <main id="main">
+    <br><br><br><br><br>
+    <section id="portfolio_1" class="portfolio-details">
+      <div class="container">
+        <div class="col-lg-6">
+          <div class="portfolio-info">
+            <h3>Exam Seat Information</h3>
+            <table class="table">
+                <tr>
+                  <th>Student Name</th><td>{{rows[4]}}</td>
+                </tr>
+                <tr>
+                  <th>Student USN</th><td>{{rows[3]}}</td>
+                </tr>
+                <tr>
+                  <th>Student Phone</th><td>{{result[2]}}</td>
+                </tr>
+                <tr>
+                  <th>Student Email</th><td>{{result[3]}}</td>
+                </tr>
+                <tr>
+                  <th>Exam Hall</th><td>{{file_name}}</td>
+                </tr>
+                <tr>
+                  <th>Bench No</th><td>{{rows[2]}}</td>
+                </tr>
+                <tr>
+                  <th>Invigilator</th><td>{{rows[1]}}</td>
+                </tr>
+            </table>
+          </div>
+        </div>
+          <div class="col-lg-6">
+            <br><br>
+                  <img src="{{url_for('static', filename='img.jpg')}}" style="width: 80%;margin: auto;">
+          </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

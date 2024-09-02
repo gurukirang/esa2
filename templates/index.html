@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Exam seat allotment</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="{{url_for('static', filename='main.css')}}" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/he/1.2.0/he.js" integrity="sha512-o4gKX6jcK0rdciOZ9X8COYkV9gviTJAbYEVW8aC3OgIRuaKDmcT9/OFXBVzHSSOxiTjsTktqrUvCUrHkQHSn9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    #form1, #form2, #form3{
+      display: none;
+    }
+    #form1.active, #form2.active,  #form3.active{
+        display: block;
+}
+body{
+  background-image: url('https://www.solidbackgrounds.com/2048x2048-pastel-blue-solid-color-background.html');
+  background-size: 50% 50vh;
+  background-attachment: fixed;
+}
+#portfolio{
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+  </style>
+</head>
+<body style="padding-top: 10px;">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" style="padding-left: 120px;">Exam Seat allotment</a>
+      <!-- <li ><a data-value="#form4" onclick="toggleform(event)"><span class="glyphicon glyphicon-login"></span>Home</a></li> -->
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li ><a data-value="#form2" onclick="toggleform(event)"><span class="glyphicon glyphicon-login"></span>Student</a></li>
+        <li ><a data-value="#form1" onclick="toggleform(event)"><span class="glyphicon glyphicon-login"></span>Admin</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<br><br><br><br>
+<div class="container">
+  {% block content %}
+  {% if msg %}
+  <div class="alert alert-danger alert-dismissible fade in">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> 
+    <strong>{{msg}}</strong>
+  </div>
+  {% endif %}
+  {% endblock content %}
+  
+  <section id="portfolio" class="portfolio-details">
+    <div class="container">
+        <div class="col-lg-6">
+          <div class="portfolio-info">
+                <img src="{{url_for('static', filename='img.jpg')}}" style="width: 100%;">
+                </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="portfolio-info">
+
+    <form  method="post" action="{{ url_for('adminlog')}}" id="form1" class="active">
+      <h2>Admin Login</h2>
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username" name="name">
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button></br></br>
+    </form>
+
+    <form  method="post" action="{{ url_for('userlog')}}" id="form2">
+      <h2>Student Login</h2>
+      <div class="form-group">
+        <label for="roll">Roll No.:</label>
+        <input type="text" class="form-control" id="roll" placeholder="Enter roll number" name="roll" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button></br></br>
+      <p>Click here to <a data-value="#form3" onclick="toggleform(event)">Sign up</a></p>
+    </form>
+
+    
+    <form method="post" action="{{ url_for('userreg')}}" id="form3">
+      <h2>Student Regestration</h2>
+      <div class="form-group">
+        <label for="roll">Roll No.:</label>
+        <input type="text" class="form-control" id="roll" placeholder="Enter roll number" name="roll" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Mobile No.:</label>
+        <input type="tel" class="form-control" id="phone" placeholder="Enter mobile number" name="phone" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button></br></br>
+      <p>Click here to <a data-value="#form2" onclick="toggleform(event)">Sign in</a></p>
+    </form>
+
+  </div>
+</div>
+</div>
+</section>
+</div>
+
+<script>
+    function toggleform(e) {
+    var Id =(e.target.getAttribute('data-value'))
+    let Items= ['#form1', '#form2', '#form3'];
+    Items.map(function(item) {
+        if(Id === item ) {
+            $(item).addClass("active");
+            $('html, body').animate({
+                scrollTop: $(item).offset().top
+            }, 'slow');
+        }
+        else {
+        $(item).removeClass("active");
+        }
+    })
+}
+
+// function studentInfo() {
+//     $('html, body').animate({
+//         scrollTop: $('#form1').offset().top
+//     }, 'slow');
+// };
+
+
+</script>
+</body>
+</html>
